@@ -1,0 +1,8 @@
+.env
+node_modules/
+.dart_tool/
+.flutter-plugins-dependencies
+build/
+local.properties
+.idea/
+*.iml
