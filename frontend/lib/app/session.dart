@@ -29,8 +29,9 @@ class Session extends ChangeNotifier {
   bool get librarian => user?['role'] == 'librarian';
   Locale get locale =>
       Locale(preferences.getString('language') == 'en' ? 'en' : 'vi');
-  ThemeMode get theme =>
-      preferences.getBool('dark') == true ? ThemeMode.dark : ThemeMode.light;
+  ThemeMode get theme => preferences.getBool('dark') == true
+      ? ThemeMode.dark
+      : ThemeMode.light;
 
   Future<void> restore() async {
     starting = true;
@@ -60,11 +61,13 @@ class Session extends ChangeNotifier {
   }
 
   Future<void> signIn(String login, String password) async {
-    final data = await api.send(
-      '/auth/login',
-      method: 'POST',
-      body: {'login': login, 'password': password},
-    ) as Json;
+    final data =
+        await api.send(
+              '/auth/login',
+              method: 'POST',
+              body: {'login': login, 'password': password},
+            )
+            as Json;
     final token = data['token'] as String;
     await _storage.write(key: _tokenKey, value: token);
     _epoch++;
@@ -102,7 +105,9 @@ class Session extends ChangeNotifier {
   }
 
   void setUnread(int value, {int? epoch}) {
-    if (user == null || (epoch != null && epoch != _epoch) || unread == value) {
+    if (user == null ||
+        (epoch != null && epoch != _epoch) ||
+        unread == value) {
       return;
     }
     unread = value;
@@ -116,6 +121,6 @@ class Session extends ChangeNotifier {
 
   Future<void> changeTheme(bool dark) async {
     await preferences.setBool('dark', dark);
-    notifyListeners();
+    notifyListener();
   }
 }
