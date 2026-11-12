@@ -121,6 +121,6 @@ class Session extends ChangeNotifier {
 
   Future<void> changeTheme(bool dark) async {
     await preferences.setBool('dark', dark);
-    notifyListener();
+    notifyListeners();
   }
 }
