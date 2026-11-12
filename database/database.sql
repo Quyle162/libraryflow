@@ -82,7 +82,7 @@ CREATE TABLE borrow_records (
   INDEX (user_id,status),
   INDEX (status,due_at),
   INDEX (borrowed_at)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB ;
 
 CREATE TABLE renewal_requests (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
